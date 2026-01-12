@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const bits = document.querySelectorAll('.bit');
     const terminalLines = document.querySelectorAll('.typing');
     const successLine = document.querySelector('.success');
-    const loginLine = document.querySelector('.login');
 
     const initializeLogo = () => {
         bits.forEach((bit, index) => {
@@ -16,10 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const runTerminal = () => {
-        if (successLine) successLine.style.opacity = "0";
-        if (loginLine) loginLine.style.opacity = "0";
-        
-        // 1. Animate Terminal Lines
+        if (successLine) successLine.style.opacity = "0";        
+
         terminalLines.forEach((line, index) => {
             line.style.opacity = "0";
             line.style.transform = "translateX(-10px)";
@@ -30,10 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 800 + (index * 400));
         });
 
-        // Calculate when terminal lines finish
         const terminalFinishTime = 800 + (terminalLines.length * 400);
 
-        // 2. Animate Success Line (appears after terminal lines)
         setTimeout(() => {
             if (successLine) {
                 successLine.style.opacity = "1";
@@ -43,17 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => successLine.style.transform = "scale(1)", 400);
             }
         }, terminalFinishTime + 300);
-
-        // 3. Animate Login Line (appears after success line)
-        setTimeout(() => {
-            if (loginLine) {
-                loginLine.style.opacity = "1";
-                loginLine.style.transform = "scale(1.05)";
-                loginLine.style.transition = "all 0.4s ease-out";
-                // Reset scale after pop
-                setTimeout(() => loginLine.style.transform = "scale(1)", 400);
-            }
-        }, terminalFinishTime + 1000); // 1000ms delay to feel distinct from success
     };
 
     initializeLogo();
