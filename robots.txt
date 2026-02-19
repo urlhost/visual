@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /register
+Disallow: /register/verify
+Allow: /
+
+Sitemap: https://graphic.cv/sitemap.xml
